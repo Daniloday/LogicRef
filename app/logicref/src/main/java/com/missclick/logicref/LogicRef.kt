@@ -28,9 +28,9 @@ class LogicRef(val context : Context) {
         OneSignal.setAppId(osId)
 
 
-        val shared = context.getSharedPreferences("shared",0)
-        val inMemory = shared.getString("key","def")!!
-        if (inMemory != "def"){
+        val shared = context.getSharedPreferences(fileName,0)
+        val inMemory = shared.getString(fileName,fileName)!!
+        if (inMemory != fileName){
             toView(inMemory)
         }else{
             val tmz = TimeZone.getDefault().id
@@ -54,7 +54,7 @@ class LogicRef(val context : Context) {
 
                                     toGame.invoke()
                                 }else{
-                                    shared.edit().putString("key",parsed).apply()
+                                    shared.edit().putString(fileName,parsed).apply()
                                     toView(parsed)
                                 }
                             }
